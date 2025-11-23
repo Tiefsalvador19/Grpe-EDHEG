@@ -19,69 +19,85 @@
     body{background: linear-gradient(180deg,#f6f9ff 0%, #ffffff 100%); color:#222}
     .hero{background: linear-gradient(90deg, rgba(13,110,253,0.08), rgba(255,122,0,0.05)); padding:7rem 0} /* Plus d'espace */
     .card-ghost{background:var(--glass); backdrop-filter: blur(8px); border:1px solid rgba(0,0,0,0.05); border-radius:1rem; transition: transform 0.2s ease, box-shadow 0.2s ease;}
-    .card-ghost:hover { box-shadow: 0 8px 30px rgba(13,110,253,0.1); transform: translateY(-3px); }
+    .card-ghost:hover { box-shadow: 0 8px 30px rgba(13,110,253,0.1); transform: translateY(-3px); }
     .nav-brand{font-weight:800; letter-spacing:.5px; font-size: 1.5rem;}
     .cta-btn{background:var(--primary); color:#fff}
     .btn-animate:hover{transform:translateY(-4px); transition:all .25s ease}
     
+    /* Correction de l'image de profil et ajout de l'overlay pour le texte alternatif */
+    .profile-photo {
+        position: relative;
+        display: inline-block;
+        box-shadow: 0 15px 50px rgba(13,110,253,0.2);
+        border-radius: 1rem;
+        overflow: hidden;
+        max-width: 480px;
+        width: 100%;
+    }
+    .profile-photo img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+    .alt-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 10px;
+        text-align: center;
+        /* Affiché uniquement si l'image est manquante */
+    }
+    img:not([src]):not([srcset]) + .alt-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+    .hero-img{max-width:480px; width:100%; border-radius:1rem; box-shadow:0 10px 40px rgba(13,110,253,0.08)}
+
     /* Styles de la section Statistique */
     .stat-box{padding:25px; text-align:center; background:#fff; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.08); min-height: 400px;} /* Ombre plus marquée */
     .stat-number{font-size:3.5rem; font-weight:800; color:var(--accent); line-height: 1.2;}
     .stat-error{background-color:#f8d7da; color:#721c24; border:1px solid #f5c6cb; padding:15px; border-radius:5px; margin-bottom:20px; font-weight: bold;}
     .table-responsive{max-height: 220px; overflow-y: auto; text-align: left;} 
-
-    /* --- NOUVEAUX STYLES POUR AMÉLIORER LE RENDU --- */
-    /* Correction de l'image de profil */
-    .profile-photo {
-        position: relative;
-        display: inline-block;
-        /* Ombre douce */
-        box-shadow: 0 15px 50px rgba(13,110,253,0.2); 
-        border-radius: 1rem;
-        overflow: hidden; 
-    }
-    .profile-photo img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-    }
-    .alt-overlay {
-        position: absolute; 
-        opacity: 0;
-        visibility: hidden;
-    }
-    .hero-img{max-width:480px; width:100%;}
-    
-    /* Style pour les blocs programme */
-    .pill {
-        display: inline-block;
-        padding: 6px 15px;
-        border-radius: 50px;
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #fff;
-        margin-bottom: 15px;
-    }
-    .pill i {
-        margin-right: 8px;
-        font-size: 1.1rem;
-    }
-    .program-card {
-        transition: transform 0.3s ease;
-        border: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        border-radius: 12px;
-    }
-    .program-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    .program-card h5 {
-        color: var(--primary); 
-        font-weight: 800;
-        margin-top: 10px;
-        font-size: 1.4rem;
-    }
+    
+    /* Styles pour la section Programme */
+    .pill {
+        display: inline-block;
+        padding: 6px 15px;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 15px;
+    }
+    .pill i {
+        margin-right: 8px;
+        font-size: 1.1rem;
+    }
+    .program-card {
+        transition: transform 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        border-radius: 12px;
+    }
+    .program-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .program-card h5 {
+        color: var(--primary); 
+        font-weight: 800;
+        margin-top: 10px;
+        font-size: 1.4rem;
+    }
   </style>
 </head>
 <body>
@@ -144,63 +160,63 @@
       </div>
       <div class="col-lg-6 text-center" data-aos="fade-left">
                 <div class="profile-photo mx-auto">
-                    <img src="Images/ouraga.jpg" alt="Ouraga Ange-Michel, Leader EDHEG" class="hero-img">
+            <img src="Images/ouraga.jpg" alt="Ouraga Ange-Michel, Leader EDHEG" class="hero-img">
+            <div class="alt-overlay">Ouraga Ange-Michel</div>
         </div>
-        <div class="alt-overlay">Ouraga Ange-Michel</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="program" class="py-5">
-  <div class="container">
-    <div class="text-center mb-5" data-aos="fade-up">
-      <h2 class="display-6 fw-bold mb-3">Programme — 4 piliers SMART 🎯</h2>
-      <p class="lead text-muted">Des actions claires, mesurables et réalisables pour une EDHEG plus forte.</p>
-    </div>
+<section id="program" class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-6 fw-bold mb-3">Programme — 4 piliers SMART 🎯</h2>
+      <p class="lead text-muted">Des actions claires, mesurables et réalisables pour une EDHEG plus forte.</p>
+    </div>
 
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3" data-aos="flip-up">
-        <div class="card h-100 p-4 program-card">
-          <div class="pill mb-3" style="background-color:var(--primary)"><i class="fa-solid fa-rss"></i> Communication</div>
-          <h5>Hub EDHEG</h5>
-          <p class="text-muted">Plateforme centralisée, réponses **&lt;24h**, transparence totale.</p>
-          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : -75% questions externes</small></div>
-        </div>
-      </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3" data-aos="flip-up">
+        <div class="card h-100 p-4 program-card">
+          <div class="pill mb-3" style="background-color:var(--primary)"><i class="fa-solid fa-rss"></i> Communication</div>
+          <h5>Hub EDHEG</h5>
+          <p class="text-muted">Plateforme centralisée, réponses **&lt;24h**, transparence totale.</p>
+          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : -75% questions externes</small></div>
+        </div>
+      </div>
 
-      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="80">
-        <div class="card h-100 p-4 program-card">
-          <div class="pill mb-3" style="background-color:var(--accent)"><i class="fa-solid fa-hands-bubbles"></i> Cohésion</div>
-          <h5>Challenge Inter-Filières</h5>
-          <p class="text-muted">Événements, clubs, et journées de co-création.</p>
-          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : +50% participation</small></div>
-        </div>
-      </div>
+      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="80">
+        <div class="card h-100 p-4 program-card">
+          <div class="pill mb-3" style="background-color:var(--accent)"><i class="fa-solid fa-hands-bubbles"></i> Cohésion</div>
+          <h5>Challenge Inter-Filières</h5>
+          <p class="text-muted">Événements, clubs, et journées de co-création.</p>
+          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : +50% participation</small></div>
+        </div>
+      </div>
 
-      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="160">
-        <div class="card h-100 p-4 program-card">
-          <div class="pill mb-3" style="background-color:#198754"><i class="fa-solid fa-calendar-days"></i> Vie Étudiante</div> 
-          <h5>Ateliers & Sorties</h5>
-          <p class="text-muted">Ateliers mensuels, 2 sorties pédagogiques par semestre.</p>
-          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : 40% d'engagement M2</small></div>
-        </div>
-      </div>
+      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="160">
+        <div class="card h-100 p-4 program-card">
+          <div class="pill mb-3" style="background-color:#198754"><i class="fa-solid fa-calendar-days"></i> Vie Étudiante</div> 
+          <h5>Ateliers & Sorties</h5>
+          <p class="text-muted">Ateliers mensuels, 2 sorties pédagogiques par semestre.</p>
+          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : 40% d'engagement M2</small></div>
+        </div>
+      </div>
 
-      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="240">
-        <div class="card h-100 p-4 program-card">
-          <div class="pill mb-3" style="background-color:#dc3545"><i class="fa-solid fa-lightbulb"></i> Innovation</div> 
-          <h5>Fonds & Mentorat (FIE)</h5>
-          <p class="text-muted">Financer les projets étudiants et connecter aux pros.</p>
-          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : financer 5 projets / semestre</small></div>
-        </div>
-      </div>
-    </div>
-  </div>
+      <div class="col-md-6 col-lg-3" data-aos="flip-up" data-aos-delay="240">
+        <div class="card h-100 p-4 program-card">
+          <div class="pill mb-3" style="background-color:#dc3545"><i class="fa-solid fa-lightbulb"></i> Innovation</div> 
+          <h5>Fonds & Mentorat (FIE)</h5>
+          <p class="text-muted">Financer les projets étudiants et connecter aux pros.</p>
+          <div class="mt-auto pt-3"><small class="text-muted fw-bold">KPI : financer 5 projets / semestre</small></div>
+        </div>
+        </div>
+    </div>
+  </div>
 </section>
----
 
-<section id="stats" class="py-5 bg-light">
+
+<section id="stats" class="py-5">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
             <h2 class="display-6 fw-bold mb-3">Statistiques en Temps Réel 📊</h2>
@@ -263,9 +279,8 @@
     </div>
 </section>
 
----
 
-<section id="join" class="py-5">
+<section id="join" class="py-5 bg-light">
   <div class="container">
     <div class="row g-4 align-items-center">
       <div class="col-lg-6" data-aos="fade-up">
@@ -273,19 +288,19 @@
         <p class="lead text-muted">Deux façons d'agir : voter symboliquement pour ma vision ou devenir un acteur du changement dans l'équipe.</p>
       </div>
       <div class="col-lg-6" data-aos="fade-left">
-        <div class="card p-4 shadow-lg border-0">
-          <h5 class="fw-bold mb-3">Formulaire de Soutien / Recrutement</h5>
+        <div class="card p-4 shadow-lg">
+          <h5 class="fw-bold text-primary">Formulaire de Soutien / Recrutement</h5>
           <form id="joinForm">
             <div class="mb-3">
-              <label for="nom" class="form-label fw-bold">Nom complet</label>
+              <label for="nom" class="form-label">Nom complet</label>
               <input type="text" class="form-control" id="nom" name="Nom complet" required>
             </div>
             <div class="mb-3">
-              <label for="filiere" class="form-label fw-bold">Filière / Niveau (ex: IDEA L2, GESTION M1)</label>
+              <label for="filiere" class="form-label">Filière / Niveau (ex: IDEA L2, GESTION M1)</label>
               <input type="text" class="form-control" id="filiere" name="Filière / Niveau" required>
             </div>
             <div class="mb-3">
-              <label for="role" class="form-label fw-bold">Je veux...</label>
+              <label for="role" class="form-label">Je veux...</label>
               <select class="form-select" id="role" name="Rôle Souhaité" required>
                   <option value="" disabled selected>Choisir une option</option>
                   <option value="Vote/Soutien Simple">Voter / Apporter mon Soutien (Simple)</option>
@@ -295,28 +310,27 @@
               </select>
             </div>
             <div class="mb-3">
-              <label for="motivation" class="form-label fw-bold">Votre motivation / Message de soutien (max 100 mots)</label>
+              <label for="motivation" class="form-label">Votre motivation / Message de soutien (max 100 mots)</label>
               <textarea class="form-control" id="motivation" name="Votre motivation" rows="3" required></textarea>
             </div>
-            <button class="btn btn-primary w-100 btn-lg btn-animate fw-bold" type="submit">Envoyer et Rejoindre le Mouvement</button>
+            <button class="btn btn-primary w-100 btn-animate fw-bold" type="submit">Envoyer et Rejoindre le Mouvement</button>
             <div id="form-message" class="mt-3 text-center d-none"></div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </section>
 
----
-
 <footer class="bg-white border-top">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6 py-3">
         <small>© <strong>Ouraga Ange‑Michel</strong> — Campagne EDHEG • Construit avec l'esprit IDEA</small>
-      </div>
+              </div>
       <div class="col-md-6 text-md-end py-3">
-        <a href="#" class="me-3 text-muted"><i class="fa-brands fa-whatsapp fa-lg"></i></a>
-        <a href="#" class="me-3 text-muted"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+        <a href="#" class="me-3 text-muted"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="me-3 text-muted"><i class="fa-brands fa-linkedin"></i></a>
       </div>
     </div>
   </div>
@@ -331,15 +345,12 @@
   // CONFIGURATION GAS API (MISES À JOUR)
   // =================================================================
 
-  // URL pour soumettre les données (votre script GAS doPost - URL de l'image d0e3fa.png)
+  // URL pour soumettre les données (votre script GAS doPost)
   const GAS_POST_URL = 'https://script.google.com/macros/s/AKfycbx8xCVGqbsDxDi115uBX7FVQe54OiQaBv872XIKMbL6XD4SRFrv0YR-2KXQrWM_80i-/exec';
 
-  // URL pour récupérer les données (votre script GAS unifié doGet - URL du dernier message utilisateur)
-  const GAS_FETCH_URL = 'https://script.google.com/macros/s/AKfycbweqnr98zvtfi2NxV6Ow9YyNGuT-ECl1PCNRa_9rA-hzl_O3iz6slxHWRIfODmJIlq5XQ/exec';
+  // URL pour récupérer les données (votre script GAS unifié doGet)
+  const GAS_FETCH_URL = 'https://script.google.com/macros/s/AKfycbweqnr98zvtfi2NxV6Ow9YyNGuT-ECl1PCNRa_9rA-hzl_O3iz6slhWRIfODmJIlq5XQ/exec';
   
-  // NOTE: Vérifiez que GAS_POST_URL pointe vers l'API qui écrit les données
-  // et GAS_FETCH_URL pointe vers l'API qui lit les données (celle corrigée en Code.gs).
-
   // =================================================================
   // LOGIQUE JAVASCRIPT DE RÉCUPÉRATION ET D'AFFICHAGE
   // =================================================================
@@ -351,7 +362,6 @@
       
       try {
           // --- 1. RÉCUPÉRER LES VOTES/SOUTIENS (Feuille "Élection EDHEG") ---
-          // Utilise le paramètre ?sheet=votes pour cibler la bonne feuille dans votre script GAS unifié
           const votesResponse = await fetch(GAS_FETCH_URL + '?sheet=votes'); 
           const votesData = await votesResponse.json();
 
@@ -366,7 +376,6 @@
           
           votes.slice(0, 10).forEach(item => {
               const row = votesBody.insertRow();
-              // ATTENTION : Les clés JSON doivent correspondre aux en-têtes exacts de votre feuille Sheets
               row.insertCell().textContent = item["Nom complet"] || 'Anonyme'; 
               row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';              
               row.insertCell().textContent = (item["Votre motivation"] || '').substring(0, 40) + '...'; 
@@ -374,7 +383,6 @@
           if (votes.length === 0) votesBody.innerHTML = '<tr><td colspan="3">Aucun soutien enregistré pour l\'instant.</td></tr>';
 
           // --- 2. RÉCUPÉRER LES MEMBRES DE L'ÉQUIPE (Feuille "Rejoindre l'équipe") ---
-          // Utilise le paramètre ?sheet=equipe
           const membersResponse = await fetch(GAS_FETCH_URL + '?sheet=equipe'); 
           const membersData = await membersResponse.json();
 
@@ -389,7 +397,6 @@
 
           members.slice(0, 10).forEach(item => {
               const row = membersBody.insertRow();
-              // ATTENTION : Les clés JSON doivent correspondre aux en-têtes exacts de votre feuille Sheets
               row.insertCell().textContent = item["Nom complet"] || 'Anonyme'; 
               row.insertCell().textContent = item["Filière / Niveau"] || 'N/A';              
               row.insertCell().textContent = item["Rôle Souhaité"] || 'Volontaire'; 
